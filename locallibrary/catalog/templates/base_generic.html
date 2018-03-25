@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  {% block title %}<title>Local Library</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+  <div style="height:20px;background-color:#000;width:100%;display:block;"></div>
+  <div class="jumbotron jumbologo">
+
+    <div class="container">
+      
+      <div class="row row-content align-items-center">
+        <div class="col-sm-12 flex-first">
+          <div class="media">
+            <div class="media-left media-middle">
+              <img class="media-object align-self-center jumbologo" src="{% static 'img/book-logo.png' %}" width="100px" alt="Book">
+            </div>
+            <div class="media-body align-self-center">
+              <h1 style="font-size:50px;">Smart Library System</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-sm-3 block">
+      {% block sidebar %}
+      <ul class="list-group">
+          <li class="list-group-item"><a href="{% url 'index' %}">Home</a></li>
+          <li class="list-group-item"><a href="{% url 'books' %}">All books</a></li>
+          <li class="list-group-item"><a href="{% url 'authors' %}">All authors</a></li>
+        {% if user.is_authenticated %}
+          <li class="list-group-item">User: {{ user.get_username }}</li>
+          <li class="list-group-item"><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
+          <li class="list-group-item"><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+        {% else %}
+          <li class="list-group-item"><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+        {% endif %} 
+      
+      </ul>
+     {% endblock %}
+      </div>
+      <div class="col-sm-9 ">
+      {% block content %}{% endblock %}
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends "base_generic1.html" %}
+
+{% block content %}
+	<div class="container">
+		<div class="page-header">
+			<h1>Welcome {{user.get_username}}</h1>
+		</div>
+		<div>
+			<p>There are {{ num_branchs }} branches with around {{ num_students }} students.</p>
+		</div>
+		<a>Edit your info</a> 
+	</div>
+	<div>
+		
+	</div>
+{% endblock %}

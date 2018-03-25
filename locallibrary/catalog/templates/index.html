@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="card" style="margin-top:0px;">
+	<div class="card-body" style="margin-top:0px;">
+		<h2 class="card-title bp" style="padding:10px;">Local Library Home</h4>
+		<h4 class="card-text" style="padding:0 10px;">Welcome to <em>Smart Library</em>, a Django based website developed by Shubham Mishra, Raja Kedia and others.</h4>
+	</div>
+</div>
+<br>
+<br>
+<br>
+
+<div class="card" style="margin-top:0px;">
+	<div class="card-body" style="margin-top:0px;">
+		<h2 class="card-title bp" style="padding:10px;">Content</h4>
+		<p class="card-text" style="padding:0 10px;">The library has the following record counts:</p>
+		  <ul>
+		    <li><strong>Books:</strong> {{ num_books }}</li>
+		    <li><strong>Copies:</strong> {{ num_instances }}</li>
+		    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+		    <li><strong>Authors:</strong> {{ num_authors }}</li>
+		  </ul>
+		  <p>You have visited this page {{ num_visits }} {% if num_visits == 1 %} time{% else %} times {% endif %}.</p>
+	</div>
+</div>
+
+{% endblock %}

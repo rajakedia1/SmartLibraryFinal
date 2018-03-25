@@ -1,0 +1,17 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+.container-fluid{
+	display: block;
+	width:;
+}
+.jumbologo{
+	background-color: #fff4ed;
+	border: none;
+}
+.bp{
+	border: 1px solid #ddd;
+	border-radius: 2px;
+}
