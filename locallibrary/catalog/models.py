@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 import uuid
 from django.contrib.auth.models import User 
-import datetime
+import datetime,random, string
 # Create your models here.
 class Genre(models.Model):
     """
@@ -21,6 +21,11 @@ class Book(models.Model):
     """
     Model representing a book (but not a specific copy of a book).
     """
+    def get_image_name(instance, filename):
+        fn = 'templates/catalog/img/%s.jpg' %''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+        return fn
+
+
     title = models.CharField(max_length=200)
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
     # Foreign Key used because book can only have one author, but authors can have multiple books
@@ -30,6 +35,8 @@ class Book(models.Model):
     genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
     # ManyToManyField used because genre can contain many books. Books can cover many genres.
     # Genre class has already been defined so we can specify the object above.
+    image = models.ImageField(upload_to = get_image_name)
+
     
 
     def __str__(self):
