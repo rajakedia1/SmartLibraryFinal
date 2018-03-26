@@ -3,6 +3,8 @@ from django.urls import reverse
 import uuid
 from django.contrib.auth.models import User 
 import datetime,random, string
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 # Create your models here.
 class Genre(models.Model):
     """
@@ -22,7 +24,7 @@ class Book(models.Model):
     Model representing a book (but not a specific copy of a book).
     """
     def get_image_name(instance, filename):
-        fn = 'templates/catalog/img/%s.jpg' %''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+        fn = '%s.jpg' %''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(5))
         return fn
 
 
@@ -35,7 +37,7 @@ class Book(models.Model):
     genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
     # ManyToManyField used because genre can contain many books. Books can cover many genres.
     # Genre class has already been defined so we can specify the object above.
-    image = models.ImageField(upload_to = get_image_name)
+    image = models.ImageField(upload_to = get_image_name, null=True,blank=True)
 
     
 
@@ -123,6 +125,8 @@ class Author(models.Model):
 
 class Review(models.Model):
     review = models.CharField(max_length=100)
+    star = models.IntegerField(default=5, 
+    validators = [MaxValueValidator(5),MinValueValidator(1)])
     date = models.DateField(editable=False,default=datetime.date.today)
     book = models.ForeignKey('Book', on_delete=models.SET_NULL, null=True) 
     def __str__(self):

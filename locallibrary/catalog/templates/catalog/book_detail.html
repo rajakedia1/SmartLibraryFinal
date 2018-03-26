@@ -37,8 +37,8 @@
         </div>
 
     </div>
-    {% load static %}
-    <div class="col-sm-3 flex-first"><img class="align-self-center jumbologo" src="{% static 'img/book-logo.png' %}" width="150" alt="Book"></div>
+    
+    <div class="col-sm-3 flex-first"><img class="align-self-center jumbologo" src="{{ book.image.url }}" width="150" alt="Book"></div>
 
   </div>
 

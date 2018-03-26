@@ -8,9 +8,10 @@ from django.views import generic
 class ReviewBookForm(forms.Form, generic.DetailView):
 	model = Book
 	new_review = forms.CharField(help_text="Enter review for this book")
+	new_star = forms.IntegerField()
 	def clean_review(self):
 		data = self.cleaned_data['new_review']
-
+		data_star = self.cleaned_data['new_star']
 		if len(data)==0:
 			raise ValidationError(_('Write something before submit'))
 
