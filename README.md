@@ -1,27 +1,27 @@
-# ConFusion
+# Smart Library
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
-## Development server
+Smart Library is the name of the website that we had created. As per expectation, the purpose of the website is to provide an online catalog for a small local library, where users can browse available books and manage their accounts.
+This project has been carefully chosen because it can scale to show as much or little detail as we need, and can be used to show off almost any Django feature. More importantly, it allows us to provide a guided path through the most important functionality in the Django web framework:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+•	Here, we had developed a simple browse-only library that library members can use to find out what books are available. This allows us to explore the operations that are common to almost every website: reading and displaying content from a database.
 
-## Code scaffolding
+•	Next, the library example naturally extends to demonstrate more advanced Django features. For example we can extend the library to allow users to reserve books, and use this to demonstrate how to use forms, and support user authentication.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Even though this is a very extensible example, it's called Smart Library for a reason — we're hoping to show the minimum information that will help you get up and running with Django quickly. As a result we'll store information about books, copies of books, authors and other key information. We won't however be storing information about other items a library might store, or provide the infrastructure needed to support multiple library sites or other "big library" features. 
 
-## Build
+Home Page
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+![Add Homepage](https://github.com/rajakedia1/SmartLibraryFinal/blob/master/img/home.png)
 
-## Running unit tests
+Book Page
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Add Bookpage](https://github.com/rajakedia1/SmartLibraryFinal/blob/master/img/book.png)
 
-## Running end-to-end tests
+Author Page
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+![Add Authorpage](https://github.com/rajakedia1/SmartLibraryFinal/blob/master/img/author.png)
 
-## Further help
+Borrowed Book page
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+![Add Borrowedpage](https://github.com/rajakedia1/SmartLibraryFinal/blob/master/img/borrowed.png)
