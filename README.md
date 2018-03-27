@@ -25,3 +25,7 @@ Author Page
 Borrowed Book page
 
 ![Add Borrowedpage](https://github.com/rajakedia1/SmartLibraryFinal/blob/master/img/borrowed.png)
+
+Book Detail Page
+
+![Add Borrowedpage](https://github.com/rajakedia1/SmartLibraryFinal/blob/master/img/bookdetail.png)
