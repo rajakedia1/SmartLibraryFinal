@@ -6,9 +6,11 @@
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!--
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+-->
   
   <!-- Add additional CSS in static file -->
   {% load static %}
@@ -18,90 +20,65 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
     <!-- Js files -->
-    
+    {% load static %}
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/tether.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/scripts.js' %}"></script>
     
 </head>
-
+    
 <body>
-
-<nav class="navbar navbar-toggleable-sm navbar-inverse bg-dark">
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
-           <span class="navbar-toggler-icon"></span>
-       </button>
-       <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample01">
-           <ul class="navbar-nav">
-               <li class="nav-item active">
-                   <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-               </li>
-               <li class="nav-item">
-                   <a class="nav-link" href="#">Link</a>
-               </li>
-               <li class="nav-item">
-                   <a class="nav-link disabled" href="#">Disabled</a>
-               </li>
-               <li class="nav-item dropdown">
-                   <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                   <div class="dropdown-menu" aria-labelledby="dropdown01">
-                       <a class="dropdown-item" href="#">Action</a>
-                       <a class="dropdown-item" href="#">Another action</a>
-                       <a class="dropdown-item" href="#">Something else here</a>
-                   </div>
-               </li>
-           </ul>
-       </div>
-   </nav>
     
-    
-  <div style="height:20px;background-color:#000;width:100%;display:block;"></div>
-  <div class="jumbotron jumbologo">
-
-    <div class="container">
-      
-      <div class="row row-content align-items-center">
-        <div class="col-sm-12 flex-first">
-          <div class="media">
-            <div class="media-left media-middle">
-              <img class="media-object align-self-center jumbologo" src="{% static 'img/book-logo.png' %}" width="100px" alt="Book">
+    <nav class="navbar navbar-inverse bg-primary navbar-toggleable-sm" style="background-color: #222;">
+        <div class="container">
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+             {% load static %}
+            <a class="navbar-brand" href="index.html"><img src="{% static 'media_cdn/logo.png' %}" height="30" width="41" > Smart Library</a>
+            
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><span class="fa fa-user fa-lg"></span> {{ user.get_username }}</li>
+                        <li class="nav-item"><a href="{% url 'logout'%}?next={{request.path}}" class="nav-link"><span class="fa fa-sign-in fa-lg"></span> Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a href="{% url 'login'%}?next={{request.path}}" class="nav-link"><span class="fa fa-sign-in fa-lg"></span> Login</a></li>
+                    {% endif %} 
+                </ul>
             </div>
-            <div class="media-body align-self-center">
-              <h1 style="font-size:50px;">Smart Library System</h1>
+        </div> 
+        
+    </nav>
+    <div style="background-color: #51a5ee;">
+        <div class="container">
+            <div class="row-header">
+                <div class="col">
+                    {% block sidebar %}
+                <ul class="nav nav-dark justify-content-center">
+                    <li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{% url 'books' %}" class="nav-link">Books</a></li>
+                    <li class="nav-item"><a href="{% url 'authors' %}" class="nav-link">Author</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a href="{% url 'my-borrowed' %}" class="nav-link">My Borrowed</a></li>
+                    {% endif %}
+                </ul>
+                    {% endblock %}
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-
     </div>
-  </div>
+    
 
-  <div class="container">
 
-    <div class="row">
-      <div class="col-sm-3 block">
-      {% block sidebar %}
-      <ul class="list-group">
-          <li class="list-group-item"><a href="{% url 'index' %}">Home</a></li>
-          <li class="list-group-item"><a href="{% url 'books' %}">All books</a></li>
-          <li class="list-group-item"><a href="{% url 'authors' %}">All authors</a></li>
-        {% if user.is_authenticated %}
-          <li class="list-group-item">User: {{ user.get_username }}</li>
-          <li class="list-group-item"><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
-          <li class="list-group-item"><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
-        {% else %}
-          <li class="list-group-item"><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
-        {% endif %} 
+  
       
-      </ul>
-     {% endblock %}
-      </div>
-      <div class="col-sm-9 ">
       {% block content %}{% endblock %}
-      </div>
-    </div>
+      
+    
 
-  </div>
+  
 </body>
 </html>

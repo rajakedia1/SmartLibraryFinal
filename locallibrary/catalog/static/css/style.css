@@ -1,3 +1,12 @@
+.fn-large{
+    font-size: 18px;
+}
+.navbar-inverse{
+    background-color: #512DA8;;
+}
+.fn-light{
+    color: #ddd;
+}
 /*
 .sidebar-nav {
     margin-top: 20px;
