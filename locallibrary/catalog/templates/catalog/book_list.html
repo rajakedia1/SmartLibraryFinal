@@ -1,11 +1,53 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+
+<header class="jumbotron">
+        <div class="container">
+            <div class="row row-header">
+                <div class="col-12 col-md-6">
+                    <form method="GET" action="{% url 'searchB' %}">
+                    <div class="input-group mb-3">
+                        
+                          <input type="text"  name="q" value="{{request.GET.q}}" class="form-control" placeholder="Search Book" aria-label="Search" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                            <button class="btn btn-success" type="submit"><span class="fa fa-search fa-lg"></span></button>
+                          </div>
+                        
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<div class="container">
     <h1>Book List</h1>
-    <form method="GET" action="{% url 'searchB' %}">
-      <input name="q" value="{{request.GET.q}}" placeholder="search.."/>
-      <button class="btn btn-success" type="submit">Search</button>
-    </form>
+    
+    <div class="row">
+        {% if book_list %}
+        
+        {% for book in book_list %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+            <div class="card">
+                {% load static %}
+                <img class="card-img-top" src="{{ book.image.url }}" height="250" style="padding: 20px;">
+                <div class="card-body" style="padding: 20px;">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">({{book.author}})</p>
+                    <a href="{{ book.get_absolute_url }}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    {% else %}
+      <p>There are no books in the library.</p>
+    {% endif %} 
+    </div>
+    
+</div>
+<br><br>
     {% if book_list %}
     <ul>
 
