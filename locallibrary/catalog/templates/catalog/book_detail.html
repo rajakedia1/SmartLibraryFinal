@@ -68,7 +68,11 @@
                     <p>--{{review.date}}</p>
                     {% endfor %}
                 {% else %}
-                    <p>There are no reviews.</p>
+                    <p>There are no reviews.
+                    {% if user.is_authenticated %} 
+                        Be the first to
+                      <a href="{% url 'review-book' book.pk %}"> write a review</a></p>
+                    {% endif %}
                 {% endif %} 
             </div>
         </div>

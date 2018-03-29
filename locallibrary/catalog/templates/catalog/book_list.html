@@ -9,7 +9,7 @@
                     <form method="GET" action="{% url 'searchB' %}">
                     <div class="input-group mb-3">
                         
-                          <input type="text"  name="q" value="{{request.GET.q}}" class="form-control" placeholder="Search Book" aria-label="Search" aria-describedby="basic-addon2">
+                          <input type="text"  name="q" autocomplete="off" value="{{request.GET.q}}" class="form-control" placeholder="Search Book" aria-label="Search" aria-describedby="basic-addon2">
                           <div class="input-group-append">
                             <button class="btn btn-success" type="submit"><span class="fa fa-search fa-lg"></span></button>
                           </div>
