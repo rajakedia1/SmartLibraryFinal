@@ -7,6 +7,9 @@
 .fn-light{
     color: #ddd;
 }
+a:hover{
+    cursor: pointer;
+}
 /*
 .sidebar-nav {
     margin-top: 20px;
