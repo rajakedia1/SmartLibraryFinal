@@ -10,6 +10,10 @@
 a:hover{
     cursor: pointer;
 }
+.footer {
+  background-color: #D1C4E9;
+  margin: 0px auto;
+  padding: 20px 0px; }
 /*
 .sidebar-nav {
     margin-top: 20px;

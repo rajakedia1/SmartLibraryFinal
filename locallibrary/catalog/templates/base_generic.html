@@ -42,7 +42,7 @@
             <div class="collapse navbar-collapse" id="Navbar">
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
-                        <li class="nav-item"><span class="fa fa-user fa-lg"></span> {{ user.get_username }}</li>
+                        <li class="nav-item"><a href="#" class="nav-link"><span class="fa fa-user fa-lg"></span> {{ user.get_username }}</a></li>
                         <li class="nav-item"><a href="{% url 'logout'%}?next={{request.path}}" class="nav-link"><span class="fa fa-sign-in fa-lg"></span> Logout</a></li>
                     {% else %}
                         <li class="nav-item"><a href="{% url 'login'%}?next={{request.path}}" class="nav-link"><span class="fa fa-sign-in fa-lg"></span> Login</a></li>
@@ -78,7 +78,48 @@
       {% block content %}{% endblock %}
       
     
-
+    
+    <footer class="footer" style="background-color: #51a5ee;">
+        <div class="container">
+            <br>
+            <div class="row">             
+                <div class="col-5 offset-1 col-sm-2">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'books' %}">Book</a></li>
+                        <li><a href="{% url 'authors' %}">Author</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-sm-5">
+                    <h5>Our Address</h5>
+                    <address>
+		              IIT ISM, Dhanbad<br>
+                        Jharkhand<br>
+                        India - 826004
+		              <span class="fa fa-phone fa-lg"></span> : +91 123 456 7890<br>
+		              <span class="fa fa-fax fa-lg"></span> : +91 123 456 7890<br>
+		              <span class="fa fa-envelope fa-lg"></span> : <a href="mailto:smart@library.net">smart@library.net</a>
+		           </address>
+                </div>
+                <div class="col col-sm-4 align-self-center">
+                    <div style="text-align: center;">
+                        <a href="http://google.com/+" class="btn btn-social-icon btn-google-plus"><span class="fa fa-google-plus fa-lg"></span> </a>
+                        <a href="http://www.facebook.com/profile.php?id=" class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook fa-lg"></span> </a>
+                        <a href="http://www.linkedin.com/in/" class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin fa-lg"></span> </a>
+                        <a href="http://twitter.com/" class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter fa-lg"></span> </a>
+                        <a href="http://youtube.com/" class="btn btn-social-icon btn-youtube"><span class="fa fa-youtube fa-lg"></span> </a>
+                        <a href="mailto:" class="btn btn-social-icon"><span class="fa fa-envelope fa-lg"></span> </a>
+                    </div>
+                </div>
+           </div>
+           <div class="row justify-content-center">             
+                <div class="col-auto">
+                    <p>© Copyright 2015 Smart Library</p>
+                </div>
+           </div>
+        </div>
+    </footer>
   
 </body>
 </html>
