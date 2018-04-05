@@ -1,19 +1,40 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>Borrowed books</h1>
+    
 
-    {% if bookinstance_list %}
-    <ul>
+<header class="jumbotron">
+        <div class="container">
+            <h1>Borrowed books</h1>
+        </div>
+</header>
 
-      {% for bookinst in bookinstance_list %} 
-      <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})        
-      </li>
-      {% endfor %}
-    </ul>
+<div class="container">
+    <h1><span class="fa fa-book"></span> Book List</h1>
+    
+    <div class="row">
+        {% if bookinstance_list %}
+        
+        {% for bookinst in bookinstance_list %} 
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+            <div class="card">
+                {% load static %}
+                <img class="card-img-top" src="{{ bookinst.book.image.url }}" height="250" style="padding: 20px;">
+                <div class="card-body" style="padding: 20px;">
+                    <h5 class="card-title">{{ bookinst.book.title }}</h5>
+                    <p class="card-text">({{bookinst.book.author}})</p>
+                    <p class="card-text"><strong>Due Back: </strong>{{bookinst.due_back}}</p>
+                    <a href="{{ bookinst.book.get_absolute_url }}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
 
     {% else %}
-      <p>There are no books borrowed.</p>
-    {% endif %}       
+      <p>There are no borrowed books.</p>
+    {% endif %} 
+    </div>
+    
+</div>
+
 {% endblock %}
